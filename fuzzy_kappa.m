@@ -1,7 +1,3 @@
-function [fk, sim, P, E] = fuzzy_kappa(A, B, M, Mask, f)
-% FUZZY_KAPPA Applies the Fuzzy Kappa method (Hagen-Zanker, 2009)
-% [fk, sim, P, E] = fuzzy_kappa(A, B, M, Mask, f)
-%
 % =======================================================================
 % Copyright 2022
 % Author: Alex Hagen-Zanker
@@ -9,6 +5,10 @@ function [fk, sim, P, E] = fuzzy_kappa(A, B, M, Mask, f)
 %
 % Distributed under the MIT Licence (http://opensource.org/licenses/MIT)
 % =======================================================================
+%
+function [fk, sim, P, E] = fuzzy_kappa(A, B, M, Mask, f)
+% FUZZY_KAPPA Applies the Fuzzy Kappa method (Hagen-Zanker, 2009)
+% [fk, sim, P, E] = fuzzy_kappa(A, B, M, Mask, f)
 %
 % OUTPUTS
 % fk is the fuzzy kappa statistic
@@ -43,7 +43,7 @@ function [fk, sim, P, E] = fuzzy_kappa(A, B, M, Mask, f)
 % Corner case: Both maps are uniform and same class: P = E = 1, fk = NaN
 % 
 % REFERENCE
-% Hagen‐Zanker, A., 2009. An improved Fuzzy Kappa statistic that accounts 
+% Hagen-Zanker, A., 2009. An improved Fuzzy Kappa statistic that accounts 
 % for spatial autocorrelation. International Journal of Geographical 
 % Information Science, 23(1), pp.61-73.
 
