@@ -36,7 +36,7 @@ function [fk, sim, P, E] = fuzzy_kappa(A, B, M, Mask, f)
 % POSTCONDITIONS
 % P in range [0,1]
 % E in range [0,1]
-% fk in range [-1, 1]
+% fk in range [-inf, 1]
 % sim of the same dimension as A, B, Mask; Values inside study area in 
 % range [0,1]; Values outside study area NaN
 % Corner case: The study area is empty: P = E = fk = NaN, sim = NaN matrix 
