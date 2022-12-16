@@ -16,7 +16,7 @@ Mask = logical(Mask);
 A = A_after * m + A_before;
 B = B_after * n + B_before;
 
-Msim = eye(m*m, n*n);
+Msim = zeros(m*m, n*n);
 
 for ia = 1:m
     for ja = 1:m
