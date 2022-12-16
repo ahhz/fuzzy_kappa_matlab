@@ -7,14 +7,14 @@
 % =======================================================================
 %
 function  [fks, sim, P, E] = fuzzy_kappa_simulation(A_before, A_after, B_before, B_after, Mask, M, f)
-% FUZZY_KAPPA_SIMULATION Applies the Fuzzy Kappa Simulationmethod (Van
+% FUZZY_KAPPA_SIMULATION Applies the Fuzzy Kappa Simulation method (Van
 % Vliet et al, 2013)
 
 Mask = logical(Mask);
 
 [m,n] = size(M);
-A = A_after * m + A_before;
-B = B_after * n + B_before;
+A = A_before * m + A_after;
+B = B_before * n + B_after;
 
 Msim = zeros(m*m, n*n);
 
