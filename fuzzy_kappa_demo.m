@@ -51,26 +51,45 @@ B2 = [0 0 0 0 0 0 0 0 0 0; ...
       1 0 0 0 0 0 0 0 0 0; ...
       1 0 0 0 0 0 0 0 0 0];
 
+A3 = readmatrix("Map1.asc","NumHeaderLines",5,"Delimiter"," ","FileType","text");
+B3 = readmatrix("Map3.asc","NumHeaderLines",5,"Delimiter"," ","FileType","text");
+M3 = eye(4);
+Mask3 = readmatrix("Mask.asc","NumHeaderLines",5,"Delimiter"," ","FileType","text");
+halving_distance = 2;
+f3 = @(d)exp(log(1/2) * d / halving_distance); 
+
 Mask = ones(10);
 M = eye(2);
 f = @(d)(d <= 1.01) * 0.5 + (d <= 0.5) * 0.5;
 
 [fk, sim, P, E] = fuzzy_kappa(A1, B1, M, Mask, f);
-h          = subplot(2,3,1); imagesc(1-A1);title("A")
-h(end + 1) = subplot(2,3,2); imagesc(1-B1);title("B")
-h(end + 1) = subplot(2,3,3); imagesc(sim);
+h          = subplot(3,3,1); imagesc(A1+1);title("A")
+h(end + 1) = subplot(3,3,2); imagesc(B1+1);title("B")
+h(end + 1) = subplot(3,3,3); imagesc(sim);
 title("Sim (FK: " + fk + newline + "P: " + P + ", E: " + E + ")")
 
 [fk, sim, P, E] = fuzzy_kappa(A2, B2, M, Mask, f);
-h(end + 1) = subplot(2,3,4); imagesc(1-A2);title("A")
-h(end + 1) = subplot(2,3,5); imagesc(1-B2);title("B")
-h(end + 1) = subplot(2,3,6); imagesc(sim);
+h(end + 1) = subplot(3,3,4); imagesc(A2+1);title("A")
+h(end + 1) = subplot(3,3,5); imagesc(A2+1);title("B")
+h(end + 1) = subplot(3,3,6); imagesc(sim);
 title("Sim (FK: " + fk + newline + "P: " + P + ", E: " + E + ")")
 
+[fk, sim, P, E] = fuzzy_kappa(A3, B3, M3, Mask3, f3);
+h(end + 1) = subplot(3,3,7); image(A3+1, 'AlphaData', Mask3);title("A")
+h(end + 1) = subplot(3,3,8); image(B3+1, 'AlphaData', Mask3);title("B")
+h(end + 1) = subplot(3,3,9); imagesc(sim, 'AlphaData', Mask3);
+title("Sim (FK: " + fk + newline + "P: " + P + ", E: " + E + ")")
+colorbar
 
 set(h, 'XTick', []);
 set(h, 'YTick', []);
 axis(h,'square')
+set(h,'Color',[0.9 0.9 0.9])
 
-colormap(gray)
+demo_colors = [1 1 0.5;1 0 0;0	0 1;0 1 0];
+
+set(h([1,2,4,5]), 'Colormap',[1 1 1; 0 0 0]);
+set(h([7,8]),'Colormap',demo_colors)
+set(h([3,6,9]),'Colormap',gray)
+
 
