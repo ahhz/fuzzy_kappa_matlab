@@ -31,7 +31,7 @@ function [fk, sim, P, E] = fuzzy_kappa(A, B, M, Mask, f)
 % to the number of classes in B.
 % The argument f must be function handle for a unary function with inputs 
 % in the range [0,inf] with f(0) = 1 and f(inf) = 0, and f(x) <= f(y) for 
-% all x > y
+% all x > y. The function must be vectorized to be applied on matrix.
 % 
 % POSTCONDITIONS
 % P in range [0,1]
@@ -88,7 +88,7 @@ for i = 1:m
 end
 E = E / r^2;
 P = mean(sim(Mask),'all');
-if(E == 1)
+if E == 1
     fk = NaN;
 else
     fk =  (P - E) / (1 - E);
